@@ -13,7 +13,7 @@ public class UnrealCommanderTarget : TargetRules
 		LinkType = TargetLinkType.Monolithic;
 
 		// TODO: What kind of animal is it and with what is it eaten?
-		// DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.V2;
 
 		LaunchModuleName = "UnrealCommander";
 		ExtraModuleNames.AddRange( 

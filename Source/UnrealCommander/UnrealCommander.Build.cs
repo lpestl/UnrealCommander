@@ -20,7 +20,6 @@ public class UnrealCommander : ModuleRules
 				"SlateCore",
 				"StandaloneRenderer",
 				"SourceCodeAccess",
-				"WebBrowser",
 			}
 		);
 
