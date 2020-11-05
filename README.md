@@ -6,7 +6,7 @@ UnrealCommander is an attempt to create a file manager similar to [DoubleCommand
 
 ## Iteration 1
 
-* Create Stand Alon application based on SlateViewer template;
+* Create Stand Alone application based on SlateViewer template;
 * Creating an empty UI shell based on the Slate UI Framework;
 * Layout of working areas.
 
