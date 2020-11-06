@@ -7,6 +7,7 @@
 #include "Widgets/Testing/SPerfSuite.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Framework/Application/SlateApplication.h"
+#include "GUI/UiManager.h"
 
 IMPLEMENT_APPLICATION(UnrealCommander, "UnrealCommander");
 
@@ -37,18 +38,9 @@ int RunUnrealCommander(const TCHAR* Commandline)
 	// set the application name
 	FGlobalTabmanager::Get()->SetApplicationTitle(LOCTEXT("AppTitle", "Unreal Commander"));
 	FModuleManager::LoadModuleChecked<ISlateReflectorModule>("SlateReflector").RegisterTabSpawner(WorkspaceMenu::DeveloperMenu);
-	
-	if (FParse::Param(FCommandLine::Get(), TEXT("perftest")))
-	{
-		// Bring up perf test
-		SummonPerfTestSuite();
-	}
-	else
-	{
-		// Bring up the test suite.
-		RestoreSlateTestSuite();
-	}
 
+	// Restore layout of the main window
+	FUiManager::RestoreMainWindow();
 
 #if WITH_SHARED_POINTER_TESTS
 	SharedPointerTesting::TestSharedPointer<ESPMode::Fast>();
