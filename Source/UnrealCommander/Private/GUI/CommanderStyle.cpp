@@ -69,22 +69,7 @@ TSharedRef< FSlateStyleSet > FCommanderStyle::Create()
 // #elif IS_PROGRAM
 // 	Style->SetContentRoot(FPaths::ProjectDir() / TEXT("Resources"));
 // #endif
-	
-    // Style->Set("R3Git.R3Logo",                  new IMAGE_BRUSH(TEXT("R3Logo"), Icon40x40));
-    // Style->Set("R3Git.R3Logo.Small",            new IMAGE_BRUSH(TEXT("R3Logo"), Icon20x20));
-    // Style->Set("R3Git.GitCommitIco",            new IMAGE_BRUSH(TEXT("MenuCommit"), Icon48x48));
-    // Style->Set("R3Git.GitFetchIco",             new IMAGE_BRUSH(TEXT("MenuFetch"), Icon48x48));
-    // Style->Set("R3Git.LogoIco",                 new IMAGE_BRUSH(TEXT("Logo"), Icon48x48));
-    // Style->Set("R3Git.PullIco",                 new IMAGE_BRUSH(TEXT("MenuPull"), Icon48x48));
-    // Style->Set("R3Git.RevertIco",               new IMAGE_BRUSH(TEXT("MenuRevert"), Icon48x48));
-    // Style->Set("R3Git.GitBranchIco",            new IMAGE_BRUSH(TEXT("GitBranch"), Icon40x40));
-    // Style->Set("R3Git.GitBranchSmallIco",       new IMAGE_BRUSH(TEXT("GitBranch.Small"), Icon20x20));
-    // Style->Set("R3Git.GitBranchWhiteIco",       new IMAGE_BRUSH(TEXT("GitBranchWhite"), Icon20x32));
-    // Style->Set("R3Git.FolderIco",               new IMAGE_BRUSH(TEXT("Folder"), Icon20x20));
-    // Style->Set("R3Git.PushIco",                 new IMAGE_BRUSH(TEXT("MenuPush"), Icon48x48));
-    // Style->Set("R3Git.Warning",                 new IMAGE_BRUSH(TEXT("StatusMarks/SCC_NotAtHeadRevision"), Icon16x16));
-    // Style->Set("R3Git.Changes",                 new IMAGE_BRUSH(TEXT("StatusMarks/SCC_CheckedOut"), Icon16x16));
-    // Style->Set("R3Git.Dirty",                   new IMAGE_BRUSH(TEXT("StatusMarks/ContentDirty"), Icon16x16));
+	    
     // // MessageBox icons
     // Style->Set("MessageBox.Info",           new IMAGE_BRUSH(TEXT("Common/T_InfoIcon"), Icon128x128));
     // Style->Set("MessageBox.Warning",        new IMAGE_BRUSH(TEXT("Common/T_WarningIcon"), Icon128x128));
