@@ -2,12 +2,9 @@
 
 #include "UnrealCommanderApp.h"
 #include "Runtime/Launch/Public/RequiredProgramMainCPPInclude.h"	// Include relative path from Engine dir
-#include "Widgets/Testing/STestSuite.h"
 #include "ISourceCodeAccessModule.h"
-#include "Widgets/Testing/SPerfSuite.h"
-#include "Widgets/Docking/SDockTab.h"
 #include "Framework/Application/SlateApplication.h"
-#include "GUI/UiManager.h"
+#include "Views/ViewManager.h"
 
 IMPLEMENT_APPLICATION(UnrealCommander, "UnrealCommander");
 
@@ -40,7 +37,7 @@ int RunUnrealCommander(const TCHAR* Commandline)
 	FModuleManager::LoadModuleChecked<ISlateReflectorModule>("SlateReflector").RegisterTabSpawner(WorkspaceMenu::DeveloperMenu);
 
 	// Restore layout of the main window
-	FUiManager::RestoreMainWindow();
+	FViewManager::RestoreMainWindow();
 
 #if WITH_SHARED_POINTER_TESTS
 	SharedPointerTesting::TestSharedPointer<ESPMode::Fast>();

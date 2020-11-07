@@ -1,9 +1,8 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "SDockTab.h"
 
-class FUiManager
+class FViewManager
 {
 public:
     static void RestoreMainWindow();

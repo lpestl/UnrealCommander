@@ -1,17 +1,15 @@
-﻿#include "UiManager.h"
+﻿#include "ViewManager.h"
 
 #include "CommanderStyle.h"
 #include "Modules/ModuleManager.h"
 #include "ISlateReflectorModule.h"
-#include "MultiBoxBuilder.h"
 #include "SlateOptMacros.h"
-#include "TabManager.h"
 
 #define LOCTEXT_NAMESPACE "STestSuite"
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
-TSharedPtr<class FTabManager> FUiManager::UnrealCommanderTabManager = nullptr;
+TSharedPtr<class FTabManager> FViewManager::UnrealCommanderTabManager = nullptr;
 
 namespace UnrealCommanderMenu
 {
@@ -21,7 +19,7 @@ namespace UnrealCommanderMenu
     TSharedRef<FWorkspaceItem> DeveloperCategory = MenuRoot->AddGroup( NSLOCTEXT("MainWindow", "DeveloperCategory", "Developer") );
 }
 
-void FUiManager::RestoreMainWindow()
+void FViewManager::RestoreMainWindow()
 {
     // Need to load this module so we have the widget reflector tab available
     FModuleManager::LoadModuleChecked<ISlateReflectorModule>("SlateReflector");
@@ -29,7 +27,7 @@ void FUiManager::RestoreMainWindow()
     FCommanderStyle::Initialize();
     FCommanderStyle::ReloadTextures();
 
-    FGlobalTabmanager::Get()->RegisterTabSpawner("MainWindow", FOnSpawnTab::CreateStatic( &FUiManager::SpawnMainWindow ) )
+    FGlobalTabmanager::Get()->RegisterTabSpawner("MainWindow", FOnSpawnTab::CreateStatic( &FViewManager::SpawnMainWindow ) )
         .SetDisplayName(LOCTEXT("UnrealCommanderTab", "Unreal Commander"))
         .SetGroup(UnrealCommanderMenu::MenuRoot);
 
@@ -53,7 +51,7 @@ void FUiManager::RestoreMainWindow()
     FGlobalTabmanager::Get()->RestoreFrom( Layout, TSharedPtr<SWindow>() );
 }
 
-TSharedRef<SDockTab> FUiManager::SpawnMainWindow(const FSpawnTabArgs& Args)
+TSharedRef<SDockTab> FViewManager::SpawnMainWindow(const FSpawnTabArgs& Args)
 {
     TSharedRef<FTabManager::FLayout> Layout = FTabManager::NewLayout( "UnrealCommander_Layout" )
     ->AddArea
@@ -117,22 +115,22 @@ TSharedRef<SDockTab> FUiManager::SpawnMainWindow(const FSpawnTabArgs& Args)
 
     UnrealCommanderTabManager = FGlobalTabmanager::Get()->NewTabManager(UnrealCommanderTab);
     
-    UnrealCommanderTabManager->RegisterTabSpawner("MainToolbarTab", FOnSpawnTab::CreateStatic( &FUiManager::SpawnTab, FName("MainToolbarTab") ) )
+    UnrealCommanderTabManager->RegisterTabSpawner("MainToolbarTab", FOnSpawnTab::CreateStatic( &FViewManager::SpawnTab, FName("MainToolbarTab") ) )
         .SetDisplayName( NSLOCTEXT("UnrealCommanderTab", "MainToolbarTab", "Toolbar"))
         .SetGroup(UnrealCommanderMenu::ToolbarsTabs);
 
-    UnrealCommanderTabManager->RegisterTabSpawner("LeftPanelTab", FOnSpawnTab::CreateStatic( &FUiManager::SpawnTab, FName("LeftPanelTab") ) )
+    UnrealCommanderTabManager->RegisterTabSpawner("LeftPanelTab", FOnSpawnTab::CreateStatic( &FViewManager::SpawnTab, FName("LeftPanelTab") ) )
         .SetDisplayName( NSLOCTEXT("UnrealCommanderTab", "LeftPanelTab", "Left Panel"))
         .SetGroup(UnrealCommanderMenu::PanelsCategory);
-    UnrealCommanderTabManager->RegisterTabSpawner("RightPanelTab", FOnSpawnTab::CreateStatic( &FUiManager::SpawnTab, FName("RightPanelTab") ) )
+    UnrealCommanderTabManager->RegisterTabSpawner("RightPanelTab", FOnSpawnTab::CreateStatic( &FViewManager::SpawnTab, FName("RightPanelTab") ) )
         .SetDisplayName( NSLOCTEXT("UnrealCommanderTab", "RightPanelTab", "Right Panel"))
         .SetGroup(UnrealCommanderMenu::PanelsCategory);
 
-    UnrealCommanderTabManager->RegisterTabSpawner("CommandLineTab", FOnSpawnTab::CreateStatic( &FUiManager::SpawnTab, FName("CommandLineTab") ) )
+    UnrealCommanderTabManager->RegisterTabSpawner("CommandLineTab", FOnSpawnTab::CreateStatic( &FViewManager::SpawnTab, FName("CommandLineTab") ) )
         .SetDisplayName( NSLOCTEXT("UnrealCommanderTab", "CommandLineTab", "Commandline"))
         .SetGroup(UnrealCommanderMenu::ToolbarsTabs);
     
-    UnrealCommanderTabManager->RegisterTabSpawner("CommandButtonsTab", FOnSpawnTab::CreateStatic( &FUiManager::SpawnTab, FName("CommandButtonsTab") ) )
+    UnrealCommanderTabManager->RegisterTabSpawner("CommandButtonsTab", FOnSpawnTab::CreateStatic( &FViewManager::SpawnTab, FName("CommandButtonsTab") ) )
         .SetDisplayName( NSLOCTEXT("UnrealCommanderTab", "CommandButtonsTab", "Main commands"))
         .SetGroup(UnrealCommanderMenu::ToolbarsTabs);
 
@@ -160,7 +158,7 @@ TSharedRef<SDockTab> FUiManager::SpawnMainWindow(const FSpawnTabArgs& Args)
     return UnrealCommanderTab;
 }
 
-TSharedRef<SDockTab> FUiManager::SpawnTab(const FSpawnTabArgs& Args, FName TabIdentifier)
+TSharedRef<SDockTab> FViewManager::SpawnTab(const FSpawnTabArgs& Args, FName TabIdentifier)
 {
     // TODO: Configure it all
     if (TabIdentifier == FName("MainToolbarTab"))
