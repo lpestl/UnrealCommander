@@ -9,9 +9,6 @@ public class UnrealCommander : ModuleRules
 		bEnforceIWYU = true;
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		
-		// TODO: Why is this indicated in the SlateView example?
-		PublicIncludePaths.Add("Runtime/Launch/Public");
-
 		// TODO: remove unnecessary modules
 		PrivateDependencyModuleNames.AddRange(
 			new string[] {
@@ -39,20 +36,6 @@ public class UnrealCommander : ModuleRules
 			}
 		);
 
-		// TODO: Is it necessary to figure it out?
-		if (Target.Platform == UnrealTargetPlatform.Mac)
-		{
-			PrivateDependencyModuleNames.Add("XCodeSourceCodeAccess");
-			AddEngineThirdPartyPrivateStaticDependencies(Target, "CEF3");
-		}
-		else if (Target.Platform == UnrealTargetPlatform.Win64)
-		{
-			PrivateDependencyModuleNames.Add("VisualStudioSourceCodeAccess");
-		}
-
-		// TODO: Why is this indicated in the SlateView example?
-		PrivateIncludePaths.Add("Runtime/Launch/Private");		// For LaunchEngineLoop.cpp include
-
 		if (Target.Platform == UnrealTargetPlatform.IOS || Target.Platform == UnrealTargetPlatform.TVOS)
 		{
 			PrivateDependencyModuleNames.AddRange(
@@ -65,6 +48,10 @@ public class UnrealCommander : ModuleRules
 
 		if (Target.IsInPlatformGroup(UnrealPlatformGroup.Linux))
 		{
+			// TODO: Come up with a way to find a way to the engine
+			PublicIncludePaths.Add("/home/lpestl/Projects/UnrealEngine/Engine/Source/Runtime/Launch/Public");		// For LaunchEngineLoop.h include
+			PrivateIncludePaths.Add("/home/lpestl/Projects/UnrealEngine/Engine/Source/Runtime/Launch/Private");		// For LaunchEngineLoop.cpp include
+
 			PrivateDependencyModuleNames.AddRange(
 				new string[] {
 					"UnixCommonStartup"

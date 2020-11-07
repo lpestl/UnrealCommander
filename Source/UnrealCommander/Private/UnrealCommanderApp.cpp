@@ -38,16 +38,6 @@ int RunUnrealCommander(const TCHAR* Commandline)
 	// Load the source code access module
 	ISourceCodeAccessModule& SourceCodeAccessModule = FModuleManager::LoadModuleChecked<ISourceCodeAccessModule>( FName( "SourceCodeAccess" ) );
 	
-    // TODO: Is it really necessary?
-	// Manually load in the source code access plugins, as standalone programs don't currently support plugins.
-#if PLATFORM_MAC
-	IModuleInterface& XCodeSourceCodeAccessModule = FModuleManager::LoadModuleChecked<IModuleInterface>( FName( "XCodeSourceCodeAccess" ) );
-	SourceCodeAccessModule.SetAccessor(FName("XCodeSourceCodeAccess"));
-#elif PLATFORM_WINDOWS
-	IModuleInterface& VisualStudioSourceCodeAccessModule = FModuleManager::LoadModuleChecked<IModuleInterface>( FName( "VisualStudioSourceCodeAccess" ) );
-	SourceCodeAccessModule.SetAccessor(FName("VisualStudioSourceCodeAccess"));
-#endif
-
 	// set the application name
 	FGlobalTabmanager::Get()->SetApplicationTitle(LOCTEXT("AppTitle", "Unreal Commander"));
 	FModuleManager::LoadModuleChecked<ISlateReflectorModule>("SlateReflector").RegisterTabSpawner(WorkspaceMenu::DeveloperMenu);
