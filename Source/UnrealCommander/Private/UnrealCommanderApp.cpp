@@ -1,8 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "UnrealCommanderApp.h"
-//#include "RequiredProgramMainCPPInclude.h"      					// Comment this from SlateViewer example and comment Runtime/Launch/.. in .cs files 
-#include "Runtime/Launch/Public/RequiredProgramMainCPPInclude.h"	// Include relative path from Engine dir
+#include "RequiredProgramMainCPPInclude.h"      					// Comment this from SlateViewer example and comment Runtime/Launch/.. in .cs files 
+//#include "Runtime/Launch/Public/RequiredProgramMainCPPInclude.h"	// Include relative path from Engine dir
 #include "Widgets/Testing/STestSuite.h"
 #include "ISourceCodeAccessModule.h"
 #include "Widgets/Testing/SPerfSuite.h"
